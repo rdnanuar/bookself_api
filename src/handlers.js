@@ -52,16 +52,16 @@ const createBooksHandler = async (request, h) => {
 };
 
 const getAllBooksHandler = (request, h) => {
-  const filterBookName = books.filter(({ name: bookName }) => bookName.toLowerCase() === String(request.query.name).toLowerCase());
   const isReading = books.filter(({ reading }) => reading === true);
   const isNotReading = books.filter(({ reading }) => reading === false);
   const isFinished = books.filter(({ finished }) => finished === true);
   const isNotFinished = books.filter(({ finished }) => finished === false);
+
   if (Number(request.query.finished) === 1) {
     const response = h.response({
       status: 'success',
       data: {
-        books: isFinished.map(({ name, publisher }) => (({ name, publisher }))),
+        books: isFinished.map(({ id, name, publisher }) => (({ id, name, publisher }))),
       },
     }).code(200);
     return response;
@@ -70,7 +70,7 @@ const getAllBooksHandler = (request, h) => {
     const response = h.response({
       status: 'success',
       data: {
-        books: isNotFinished.map(({ name, publisher }) => (({ name, publisher }))),
+        books: isNotFinished.map(({ id, name, publisher }) => (({ id, name, publisher }))),
       },
     }).code(200);
     return response;
@@ -79,7 +79,7 @@ const getAllBooksHandler = (request, h) => {
     const response = h.response({
       status: 'success',
       data: {
-        books: isReading.map(({ name, publisher }) => (({ name, publisher }))),
+        books: isReading.map(({ id, name, publisher }) => (({ id, name, publisher }))),
       },
     }).code(200);
     return response;
@@ -88,25 +88,7 @@ const getAllBooksHandler = (request, h) => {
     const response = h.response({
       status: 'success',
       data: {
-        books: isNotReading.map(({ name, publisher }) => (({ name, publisher }))),
-      },
-    }).code(200);
-    return response;
-  }
-  if (filterBookName) {
-    const response = h.response({
-      status: 'success',
-      data: {
-        books: filterBookName.map(({ name, publisher }) => (({ name, publisher }))),
-      },
-    }).code(200);
-    return response;
-  }
-  if (books.length < 0) {
-    const response = h.response({
-      status: 'success',
-      data: {
-        books: [],
+        books: isNotReading.map(({ id, name, publisher }) => (({ id, name, publisher }))),
       },
     }).code(200);
     return response;
