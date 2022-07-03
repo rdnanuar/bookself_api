@@ -1,0 +1,30 @@
+[
+    {
+        "id": "b0987137-2d80-4de0-8a10-c544ad3a0239",
+        "name": "dicoding",
+        "year": 2004,
+        "author": "Rizky Djanuar",
+        "summary": "test",
+        "publisher": "Tencent",
+        "pageCount": 100,
+        "readPage": 50,
+        "finished": false,
+        "reading": true,
+        "insertedAt": "2022-07-03T12:32:12.133Z",
+        "updatedAt": "2022-07-03T12:32:12.133Z"
+    },
+    {
+        "id": "24c67abf-0d4d-42e6-887b-a98cbd5371a3",
+        "name": "dicoding",
+        "year": 2004,
+        "author": "Rizky Djanuar",
+        "summary": "test",
+        "publisher": "Tencent",
+        "pageCount": 100,
+        "readPage": 50,
+        "finished": false,
+        "reading": true,
+        "insertedAt": "2022-07-03T12:32:13.087Z",
+        "updatedAt": "2022-07-03T12:32:13.087Z"
+    }
+]
