@@ -57,6 +57,27 @@ const getAllBooksHandler = (request, h) => {
   const isFinished = books.filter(({ finished }) => finished === true);
   const isNotFinished = books.filter(({ finished }) => finished === false);
 
+  if (request.query.name) {
+    const findBookByName = books.filter(({ name }) => name.toLowerCase() === String(request.query.name).toLowerCase());
+    const response = h.response({
+      status: 'success',
+      data: {
+        books: findBookByName.map(({ id, name, publisher }) => (({ id, name, publisher }))),
+      },
+    }).code(200);
+    return response;
+  }
+
+  if (!request.query.name && !request.query.reading && !request.query.finished) {
+    const response = h.response({
+      status: 'success',
+      data: {
+        books: books.map(({ id, name, publisher }) => (({ id, name, publisher }))),
+      },
+    }).code(200);
+    return response;
+  }
+
   if (Number(request.query.finished) === 1) {
     const response = h.response({
       status: 'success',
@@ -94,11 +115,9 @@ const getAllBooksHandler = (request, h) => {
     return response;
   }
   const response = h.response({
-    status: 'success',
-    data: {
-      books: books.map(({ id, name, publisher }) => (({ id, name, publisher }))),
-    },
-  }).code(200);
+    status: 'fail',
+    message: 'Gagal mendapatkan Data Buku',
+  }).code(500);
   return response;
 };
 
